@@ -2,8 +2,16 @@ FROM python:3
 
 WORKDIR /usr/src/app
 
-RUN pip install --no-cache-dir kafka-python Faker
-
 COPY . .
 
+RUN pip install -r requirements.txt
+
 CMD [ "python", "./kafka_push.py" ]
+
+
+
+
+
+
+
+

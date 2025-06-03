@@ -7,6 +7,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - 22181:2181
+    networks:
+      - kafka_network
 
   kafka:
     container_name: kafka
@@ -22,6 +24,8 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - kafka_network
 
   random_generator:
     container_name: random_generator
@@ -29,3 +33,16 @@ services:
     depends_on:
       - kafka
     restart: always
+    networks:
+      - kafka_network
+
+  kafka_consumer:
+    build: ./kafka_consumer
+    depends_on:
+      - kafka
+    networks:
+      - kafka_network
+
+networks:
+  kafka_network:
+    driver: bridge

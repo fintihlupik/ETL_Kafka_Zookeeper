@@ -18,3 +18,5 @@ def agregar_datos(nuevo_dato):
         return datos_completos
 
     return None  # aún no hay suficientes datos
+
+#Personal data, Location, Professional data, Bank Data y Net Data

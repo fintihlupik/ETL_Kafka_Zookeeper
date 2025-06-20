@@ -1,2 +1,4 @@
-kafka-python
 pymongo
+python-dotenv
+kafka-python-ng==2.2.2
+redis
